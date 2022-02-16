@@ -50,25 +50,25 @@ const inPersonUsers = [{name: "Max", age: 12, city: "Ternopil"}, {name: "Vasia",
 
 
 // Коли ви це виконаєте напишіть функцію яка буде міняти місцями юзерів з одного файлу і папки в іншу. (ті, що були в папці inPerson будуть в папці online)
+//
+function changer(directoryToChangeFile, fileToChange, directoryOfChangedFile, changedFile) {
 
-function changer(fileToChange, changedFile) {
-
-    fs.readFile(path.join(__dirname, 'main', 'online', fileToChange), 'utf8', (err, data1) => {
+    fs.readFile(path.join(__dirname, 'main', directoryToChangeFile, fileToChange), 'utf8', (err, data1) => {
         if (err) {
             console.log(err)
             throw err
         }
-        fs.readFile(path.join(__dirname, 'main', 'inPerson', changedFile), 'utf8', (err1, data2) => {
+        fs.readFile(path.join(__dirname, 'main', directoryOfChangedFile, changedFile), 'utf8', (err1, data2) => {
             if (err) {
                 console.log(err)
                 throw err
             }
-            fs.appendFile(path.join(__dirname, 'main', 'online', fileToChange), data2, {flag: 'w'}, (err) => {
+            fs.appendFile(path.join(__dirname, 'main', directoryToChangeFile, fileToChange), data2, {flag: 'w'}, (err) => {
                     if (err) {
                         console.log(err)
                         throw err
                     }
-                    fs.appendFile(path.join(__dirname, 'main', 'inPerson', fileToChange), data1, {flag: 'w'}, (err) => {
+                    fs.appendFile(path.join(__dirname, 'main', directoryOfChangedFile, changedFile), data1, {flag: 'w'}, (err) => {
                         if (err) {
                             console.log(err)
                             throw err
@@ -83,4 +83,4 @@ function changer(fileToChange, changedFile) {
     })
 }
 
-changer('user1.txt', 'user1.txt')
+changer('inPerson', 'user1.txt', 'online', 'user3.txt')
