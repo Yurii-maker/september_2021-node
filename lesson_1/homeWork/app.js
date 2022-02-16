@@ -26,10 +26,10 @@ const inPersonUsers = [{name: "Max", age: 12, city: "Ternopil"}, {name: "Vasia",
 
 
 // і створити файли txt в папках (online, inPerson) в яких як дату покласти юзерів з ваших масивів, але щоб ваш файл виглядав як NAME: ім'я з обєкту і т.д і всі пункти з нового рядка.
-
-// onlineUsers.map((user, i) => {
+//
+// onlineUsers.map((user) => {
 //     for (const key in user) {
-//         fs.writeFile(path.join(__dirname, 'main', 'online', `user${i + 1}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
+//         fs.writeFile(path.join(__dirname, 'main', 'online', `${user.name}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
 //             if (err) {
 //                 console.log(err)
 //                 throw err
@@ -37,9 +37,9 @@ const inPersonUsers = [{name: "Max", age: 12, city: "Ternopil"}, {name: "Vasia",
 //         }))
 //     }
 // });
-// inPersonUsers.map((user, i) => {
+// inPersonUsers.map((user) => {
 //     for (const key in user) {
-//         fs.writeFile(path.join(__dirname, 'main', 'inPerson', `user${i + 1}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
+//         fs.writeFile(path.join(__dirname, 'main', 'inPerson', `${user.name}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
 //             if (err) {
 //                 console.log(err)
 //                 throw err
@@ -53,22 +53,22 @@ const inPersonUsers = [{name: "Max", age: 12, city: "Ternopil"}, {name: "Vasia",
 //
 function changer(directoryToChangeFile, fileToChange, directoryOfChangedFile, changedFile) {
 
-    fs.readFile(path.join(__dirname, 'main', directoryToChangeFile, fileToChange), 'utf8', (err, data1) => {
+    fs.readFile(path.join(__dirname, 'main', directoryToChangeFile, `${fileToChange}.txt`), 'utf8', (err, data1) => {
         if (err) {
             console.log(err)
             throw err
         }
-        fs.readFile(path.join(__dirname, 'main', directoryOfChangedFile, changedFile), 'utf8', (err1, data2) => {
+        fs.readFile(path.join(__dirname, 'main', directoryOfChangedFile, `${changedFile}.txt`), 'utf8', (err1, data2) => {
             if (err) {
                 console.log(err)
                 throw err
             }
-            fs.appendFile(path.join(__dirname, 'main', directoryToChangeFile, fileToChange), data2, {flag: 'w'}, (err) => {
+            fs.appendFile(path.join(__dirname, 'main', directoryToChangeFile, `${fileToChange}.txt`), data2, {flag: 'w'}, (err) => {
                     if (err) {
                         console.log(err)
                         throw err
                     }
-                    fs.appendFile(path.join(__dirname, 'main', directoryOfChangedFile, changedFile), data1, {flag: 'w'}, (err) => {
+                    fs.appendFile(path.join(__dirname, 'main', directoryOfChangedFile, `${changedFile}.txt`), data1, {flag: 'w'}, (err) => {
                         if (err) {
                             console.log(err)
                             throw err
@@ -83,4 +83,4 @@ function changer(directoryToChangeFile, fileToChange, directoryOfChangedFile, ch
     })
 }
 
-changer('inPerson', 'user1.txt', 'online', 'user3.txt')
+changer('inPerson', 'Dog', 'online', 'Cat')
