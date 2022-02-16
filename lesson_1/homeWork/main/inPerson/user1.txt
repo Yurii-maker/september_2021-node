@@ -1,0 +1,3 @@
+name: Max
+age: 12
+city: Ternopil

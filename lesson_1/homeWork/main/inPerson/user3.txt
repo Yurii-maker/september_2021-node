@@ -1,0 +1,3 @@
+name: Nadia
+age: 19
+city: Praha
