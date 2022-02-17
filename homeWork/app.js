@@ -27,6 +27,25 @@ const inPersonUsers = [{name: "Max", age: 12, city: "Ternopil"}, {name: "Vasia",
 
 // і створити файли txt в папках (online, inPerson) в яких як дату покласти юзерів з ваших масивів, але щоб ваш файл виглядав як NAME: ім'я з обєкту і т.д і всі пункти з нового рядка.
 //
+
+// function createTxt(users, directory) {
+//     users.map(user => {
+//             for (const key in user) {
+//                 fs.writeFile(path.join(__dirname, 'main', directory, `${user.name}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
+//                     if (err) {
+//                         console.log(err)
+//                         throw err
+//                     }
+//                 }))
+//             }
+//         }
+//     )
+// }
+//
+// createTxt(onlineUsers, 'online');
+// createTxt(inPersonUsers, 'inPerson');
+
+
 // onlineUsers.map((user) => {
 //     for (const key in user) {
 //         fs.writeFile(path.join(__dirname, 'main', 'online', `${user.name}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
