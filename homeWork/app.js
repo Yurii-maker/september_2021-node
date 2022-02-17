@@ -45,29 +45,6 @@ const inPersonUsers = [{name: "Max", age: 12, city: "Ternopil"}, {name: "Vasia",
 // createTxt(onlineUsers, 'online');
 // createTxt(inPersonUsers, 'inPerson');
 
-
-// onlineUsers.map((user) => {
-//     for (const key in user) {
-//         fs.writeFile(path.join(__dirname, 'main', 'online', `${user.name}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
-//             if (err) {
-//                 console.log(err)
-//                 throw err
-//             }
-//         }))
-//     }
-// });
-// inPersonUsers.map((user) => {
-//     for (const key in user) {
-//         fs.writeFile(path.join(__dirname, 'main', 'inPerson', `${user.name}.txt`), `${key}: ${user[key]}\n`, {flag: 'a'}, (err => {
-//             if (err) {
-//                 console.log(err)
-//                 throw err
-//             }
-//         }))
-//     }
-// })
-
-
 // Коли ви це виконаєте напишіть функцію яка буде міняти місцями юзерів з одного файлу і папки в іншу. (ті, що були в папці inPerson будуть в папці online)
 //
 function changer(directoryToChangeFile, fileToChange, directoryOfChangedFile, changedFile) {
