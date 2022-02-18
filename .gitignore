@@ -1,7 +1,6 @@
 /shelf/
 /workspace.xml
 /httpRequests/
-node_modules
 .idea
-package-lock.json
-package.json
+/node_modules/
+/package-lock.json
