@@ -29,7 +29,6 @@ app.post('/login', (({body}, res) => {
 ));
 
 app.get('/users', (req, res) => {
-    console.log(req.query)
     if (req.query) {
         const {age, city} = req.query;
         let filteredUsers = [...users];
@@ -51,6 +50,22 @@ app.get('/users/:id', ((req, res) => {
     const {id} = req.params;
     const user = users.find(user => user.id === +id);
     res.render('user', {user})
+
+}));
+
+app.get('/signIn', ((req, res) => {
+    res.render('signIn')
+
+}));
+
+app.post('/signIn', (({body}, res) => {
+    const user = users.find(user => user.email === body.email && user.password === body.password);
+    if (!user) {
+        res.render('notFound')
+        return
+    }
+    res.render('user', {user});
+
 
 }));
 

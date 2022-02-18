@@ -8,12 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-<div>{{user.firstName}}</div>
-<div>{{user.lastName}}</div>
-<div>{{user.email}}</div>
-<div>{{user.password}}</div>
-<div>{{user.age}}</div>
-<div>{{user.city}}</div>
+<form method="post">
+    <label>
+        <input type="text" name="email" placeholder="email">
+    </label>
 
+    <label>
+        <input type="text" name="password"  placeholder="password">
+    </label>
+    <input type="submit" value="signIn">
+</form>
 </body>
 </html>
