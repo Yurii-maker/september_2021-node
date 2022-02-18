@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const {engine} = require('express-handlebars');
 const path = require('path');
-const {urlencoded} = require("express");
 
 app.use(express.static(path.join(__dirname, 'static')));
 app.set('view engine', '.hbs');
@@ -13,9 +12,6 @@ app.use(express.urlencoded({extended: true}));
 
 
 const users = [];
-
-app.listen(5000, () => {
-});
 
 app.get('/login', ((req, res) => {
     res.render('login')
@@ -33,7 +29,8 @@ app.post('/login', (({body}, res) => {
 ));
 
 app.get('/users', (req, res) => {
-    if (req.query !== {}) {
+    console.log(req.query)
+    if (req.query) {
         const {age, city} = req.query;
         let filteredUsers = [...users];
         if (age) {
@@ -59,6 +56,7 @@ app.get('/users/:id', ((req, res) => {
 
 app.use(((req, res) => {
     res.render('notFound')
-}))
+}));
 
-
+app.listen(5000, () => {
+})
