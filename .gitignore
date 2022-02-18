@@ -2,6 +2,6 @@
 /workspace.xml
 /httpRequests/
 node_modules
-idea
+.idea
 package-lock.json
 package.json
