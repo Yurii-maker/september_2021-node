@@ -1,9 +1,10 @@
 const express = require('express');
-const app = express();
 const {engine} = require('express-handlebars');
 const path = require('path');
 
 const apiRoutes = require('./routes/apiRoutes');
+
+const app = express();
 
 app.use(express.static(path.join(__dirname, 'static')));
 app.set('view engine', '.hbs');
