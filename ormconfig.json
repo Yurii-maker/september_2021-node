@@ -1,20 +1,22 @@
 {
   "type": "mysql",
-  "host": "localhost",
+  "host": "127.0.0.1",
   "port": 3306,
   "username": "root",
   "password": "root",
-  "database": "Okten",
-  "synchronize": true,
+  "database": "okten",
+  "synchronize": false,
+  "migrationsRun": true,
   "logging": false,
   "entities": [
+    "src/entity/**/*.ts"
   ],
   "migrations": [
-    "src/migration/**/*.ts"
+    "src/migrations/**/*.ts"
   ],
   "subscribers": [
   ],
   "cli": {
-    "migrationsDir": "src/migration"
+    "migrationsDir": "src/migrations"
   }
 }

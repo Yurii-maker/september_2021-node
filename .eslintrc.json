@@ -38,11 +38,13 @@
     ]
   },
   "settings": {
-    "node": {
-      "extensions": [
-        ".js",
-        ".ts"
-      ]
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".ts"
+        ]
+      }
     }
   }
 }
