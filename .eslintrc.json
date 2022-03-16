@@ -27,13 +27,12 @@
         "ts": "never"
       }
     ],
-    "class-methods-use-this": [
+    "class-methods-use-this": "off",
+    "no-underscore-dangle":"off",
+    "no-unused-vars": [
       "error",
       {
-        "exceptMethods": [
-          "up",
-          "down"
-        ]
+        "args": "none"
       }
     ]
   },

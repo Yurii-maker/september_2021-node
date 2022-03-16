@@ -1,6 +1,3 @@
-// 2)Створіть міграцію для таблиці comments, яка буде мати такі поля
-// (id, text, authorId, postId, like, dislike, createdAt,deletedAt), відповідно звязок з
-// таблицею юзерс і постс
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CreateTableComments1646988736917 implements MigrationInterface {
@@ -8,18 +5,18 @@ export class CreateTableComments1646988736917 implements MigrationInterface {
         await queryRunner.query(`
         CREATE TABLE IF NOT EXISTS Comments(
          id INT PRIMARY KEY AUTO_INCREMENT,
-                text VARCHAR(250) NOT NULL, 
+                text VARCHAR(250) NOT NULL,
                 authorId INT,
                 postId INT,
                 likes INT DEFAULT 0,
                 dislikes INT DEFAULT 0,
                 createdAt TIMESTAMP DEFAULT (UTC_TIMESTAMP()) NOT NULL,
                 deletedAt TIMESTAMP,
-                FOREIGN KEY (authorId) 
+                FOREIGN KEY (authorId)
                 REFERENCES Users (id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,
-                FOREIGN KEY (postId) 
+                FOREIGN KEY (postId)
                 REFERENCES Posts (id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE

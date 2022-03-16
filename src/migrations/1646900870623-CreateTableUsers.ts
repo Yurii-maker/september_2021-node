@@ -5,7 +5,7 @@ export class CreateTableUsers1646900870623 implements MigrationInterface {
         await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS Users (
                 id INT PRIMARY KEY AUTO_INCREMENT,
-                firstName VARCHAR(250) NOT NULL, 
+                firstName VARCHAR(250) NOT NULL,
                 lastName VARCHAR(250) NOT NULL,
                 age INT CHECK (age > 0),
                 phone VARCHAR(250) NOT NULL UNIQUE,
@@ -13,7 +13,7 @@ export class CreateTableUsers1646900870623 implements MigrationInterface {
                 password VARCHAR(250) NOT NULL UNIQUE,
                 createdAt TIMESTAMP DEFAULT (UTC_TIMESTAMP()) NOT NULL,
                 deletedAt TIMESTAMP
-           ) 
+           )
         `);
     }
 

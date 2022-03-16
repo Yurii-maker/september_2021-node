@@ -6,7 +6,7 @@ class CreateTableUsers1646900870623 {
         await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS Users (
                 id INT PRIMARY KEY AUTO_INCREMENT,
-                firstName VARCHAR(250) NOT NULL, 
+                firstName VARCHAR(250) NOT NULL,
                 lastName VARCHAR(250) NOT NULL,
                 age INT CHECK (age > 0),
                 phone VARCHAR(250) NOT NULL UNIQUE,
@@ -14,7 +14,7 @@ class CreateTableUsers1646900870623 {
                 password VARCHAR(250) NOT NULL UNIQUE,
                 createdAt TIMESTAMP DEFAULT (UTC_TIMESTAMP()) NOT NULL,
                 deletedAt TIMESTAMP
-           ) 
+           )
         `);
     }
     async down(queryRunner) {
