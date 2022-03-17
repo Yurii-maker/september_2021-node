@@ -4,7 +4,7 @@ import { tokenService } from './tokenService';
 import { ITokenData } from '../interfaces/tokenInterface';
 
 class AuthService {
-    public async registration(user: IUser) {
+    public async registration(user: IUser):Promise<ITokenData> {
         const { email } = user;
         const userExists = await userService.getUserByEmail(email);
         if (userExists) {

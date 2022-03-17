@@ -27,10 +27,10 @@ class UserController {
         res.json(deletedUser);
     }
 
-    public async getUserByEmail(req: Request, res: Response) {
+    public async getUserByEmail(req: Request, res: Response): Promise<Response<IUser>> {
         const userByEmail = await userService.getUserByEmail(req.params.email);
 
-        res.json(userByEmail);
+        return res.json(userByEmail);
     }
 }
 
