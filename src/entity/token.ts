@@ -5,20 +5,28 @@ import {
 import { CommonFields } from './commonFields';
 import { User } from './user';
 
-export interface IRefreshToken {
+export interface ITokens {
     refreshToken: string,
+    accessToken: string,
     userId: number,
 }
 
 @Entity('Tokens', { database: 'okten' })
 
-export class Token extends CommonFields implements IRefreshToken {
+export class Token extends CommonFields implements ITokens {
     @Column({
         type: 'varchar',
         width: 250,
         nullable: false,
     })
         refreshToken: string;
+
+    @Column({
+        type: 'varchar',
+        width: 250,
+        nullable: false,
+    })
+        accessToken: string;
 
     @Column({
         type: 'int',

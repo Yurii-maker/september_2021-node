@@ -6,6 +6,7 @@ export class CreateTableTokens1647427638609 implements MigrationInterface {
         CREATE TABLE IF NOT EXISTS Tokens (
         id INT PRIMARY KEY AUTO_INCREMENT,
         refreshToken VARCHAR(250) NOT NULL,
+        accessToken VARCHAR(250) NOT NULL,
         userId INT NOT NULL,
         createdAt TIMESTAMP DEFAULT (UTC_TIMESTAMP()) NOT NULL,
         deletedAt TIMESTAMP,
