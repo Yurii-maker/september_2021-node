@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 import { IUser } from '../entity/user';
 import { userService } from './userService';
 import { tokenService } from './tokenService';
@@ -13,6 +15,13 @@ class AuthService {
         const createdUser = await userService.createUser(user);
 
         return this._getTokensPair(createdUser);
+    }
+
+    public async checkPassword(password: string, hashedPassword:string):Promise<void | Error> {
+        const isPasswordValid = await bcrypt.compare(password, hashedPassword);
+        if (!isPasswordValid) {
+            throw new Error('user or password invalid');
+        }
     }
 
     private async _getTokensPair(userData:IUser): Promise<ITokenData> {

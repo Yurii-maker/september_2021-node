@@ -20,8 +20,29 @@ class AuthController {
     public async logout(req:ICustomRequest, res:Response):Promise<Response<string>> {
         const { id } = req.user as IUser;
         res.clearCookie('refreshToken');
+        console.log(id);
         await tokenService.deleteToken(id);
         return res.json('ok');
+    }
+
+    public async login(req:ICustomRequest, res:Response) {
+        const { id, email, password: hashedPassword } = req.user as IUser;
+        const { password } = req.body;
+        await authService.checkPassword(password, hashedPassword);
+        const { refreshToken, accessToken } = await tokenService
+            .generateTokensPair({ userId: id, userEmail: email });
+        await tokenService.saveToken({ userId: id, refreshToken, accessToken });
+        res.json({ user: req.user, accessToken, refreshToken });
+    }
+
+    public async refresh(req:ICustomRequest, res:Response) {
+        const { id, email } = req.user as IUser;
+        const currentRefreshToken = req.get('Authorisation');
+        await tokenService.deleteTokenByParams({ refreshToken: currentRefreshToken });
+        const { refreshToken, accessToken } = await tokenService
+            .generateTokensPair({ userId: id, userEmail: email });
+        await tokenService.saveToken({ userId: id, refreshToken, accessToken });
+        res.json({ user: req.user, accessToken, refreshToken });
     }
 }
 export const authController = new AuthController();

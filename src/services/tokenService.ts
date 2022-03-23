@@ -24,7 +24,7 @@ class TokenService {
 
     public async saveToken(token:ITokens): Promise<ITokens> {
         const { userId, refreshToken, accessToken } = token;
-        const tokenFromDb = await tokenRepository.findTokenByUserid(userId);
+        const tokenFromDb = await tokenRepository.findTokenByUserId(userId);
         if (tokenFromDb) {
             tokenFromDb.refreshToken = refreshToken;
             tokenFromDb.accessToken = accessToken;
@@ -38,8 +38,17 @@ class TokenService {
         return deletedToken;
     }
 
-    public async verifyToken(authToken: string): Promise<IUserPayload> {
-        return jwt.verify(authToken, config.SECRET_ACCESS_KEY as string) as IUserPayload;
+    public async deleteTokenByParams(params:Partial<ITokens>):Promise<DeleteResult> {
+        const deletedTokens = await tokenRepository.deleteTokenByParams(params);
+        return deletedTokens;
+    }
+
+    public async verifyToken(authToken: string, type = 'access'): Promise<IUserPayload> {
+        let secretWord = config.SECRET_ACCESS_KEY;
+        if (type === 'refresh') {
+            secretWord = config.SECRET_REFRESH_KEY;
+        }
+        return jwt.verify(authToken, secretWord as string) as IUserPayload;
     }
 }
 
