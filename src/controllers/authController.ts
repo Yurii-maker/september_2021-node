@@ -21,7 +21,7 @@ class AuthController {
         const { id } = req.user as IUser;
         res.clearCookie('refreshToken');
         console.log(id);
-        await tokenService.deleteToken(id);
+        await tokenService.deleteTokens(id);
         return res.json('ok');
     }
 
@@ -37,8 +37,6 @@ class AuthController {
 
     public async refresh(req:ICustomRequest, res:Response) {
         const { id, email } = req.user as IUser;
-        const currentRefreshToken = req.get('Authorisation');
-        await tokenService.deleteTokenByParams({ refreshToken: currentRefreshToken });
         const { refreshToken, accessToken } = await tokenService
             .generateTokensPair({ userId: id, userEmail: email });
         await tokenService.saveToken({ userId: id, refreshToken, accessToken });

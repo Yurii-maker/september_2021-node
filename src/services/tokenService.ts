@@ -24,7 +24,7 @@ class TokenService {
 
     public async saveToken(token:ITokens): Promise<ITokens> {
         const { userId, refreshToken, accessToken } = token;
-        const tokenFromDb = await tokenRepository.findTokenByUserId(userId);
+        const tokenFromDb = await tokenRepository.findTokensByUserId(userId);
         if (tokenFromDb) {
             tokenFromDb.refreshToken = refreshToken;
             tokenFromDb.accessToken = accessToken;
@@ -33,14 +33,9 @@ class TokenService {
         return tokenRepository.createToken({ userId, refreshToken, accessToken });
     }
 
-    public async deleteToken(userId:number):Promise<DeleteResult> {
-        const deletedToken = await tokenRepository.deleteTokenByUserId(userId);
+    public async deleteTokens(userId:number):Promise<DeleteResult> {
+        const deletedToken = await tokenRepository.deleteTokensByUserId(userId);
         return deletedToken;
-    }
-
-    public async deleteTokenByParams(params:Partial<ITokens>):Promise<DeleteResult> {
-        const deletedTokens = await tokenRepository.deleteTokenByParams(params);
-        return deletedTokens;
     }
 
     public async verifyToken(authToken: string, type = 'access'): Promise<IUserPayload> {

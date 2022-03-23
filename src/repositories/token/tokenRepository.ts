@@ -12,7 +12,7 @@ class TokenRepository extends Repository<Token> implements ITokenRepository {
         return getManager().getRepository(Token).save(tokens);
     }
 
-    public async findTokenByUserId(id:number):Promise<ITokens | undefined> {
+    public async findTokensByUserId(id:number):Promise<ITokens | undefined> {
         return getManager().getRepository(Token).findOne({
             where: { userId: id },
         });
@@ -22,12 +22,8 @@ class TokenRepository extends Repository<Token> implements ITokenRepository {
         return getManager().getRepository(Token).findOne(params);
     }
 
-    public async deleteTokenByUserId(userId:number):Promise<DeleteResult> {
+    public async deleteTokensByUserId(userId:number):Promise<DeleteResult> {
         return getManager().getRepository(Token).delete({ userId });
-    }
-
-    public async deleteTokenByParams(params:Partial<ITokens>):Promise<DeleteResult> {
-        return getManager().getRepository(Token).delete(params);
     }
 }
 export const tokenRepository = new TokenRepository();
