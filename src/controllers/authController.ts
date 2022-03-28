@@ -6,7 +6,7 @@ import { ICustomRequest } from '../interfaces/customRequest';
 import { tokenService } from '../services/tokenService';
 import { IUser } from '../entity/user';
 import { emailService } from '../services/emailService';
-import { emailActionsEnum } from '../constants/enum';
+import { EmailActionsEnum } from '../constants/enum';
 
 class AuthController {
     public async registration(
@@ -20,7 +20,7 @@ class AuthController {
             data.refreshToken,
             { maxAge: 1 * 24 * 60 * 60 * 100, httpOnly: true },
         );
-        await emailService.sendMail(req.body.email, emailActionsEnum.WELCOME);
+        await emailService.sendMail(req.body.email, EmailActionsEnum.WELCOME);
         return res.json(data);
     }
 
@@ -43,7 +43,7 @@ class AuthController {
             .generateTokensPair({ userId: id, userEmail: email });
         await tokenService.saveToken({ userId: id, refreshToken, accessToken });
         res.json({ user: req.user, accessToken, refreshToken });
-        await emailService.sendMail(req.body.email, emailActionsEnum.YOU_ARE_LOGINED);
+        await emailService.sendMail(req.body.email, EmailActionsEnum.YOU_ARE_LOGINED);
     }
 
     public async refresh(req:ICustomRequest, res:Response, next:NextFunction) {

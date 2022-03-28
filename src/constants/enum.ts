@@ -1,4 +1,4 @@
-export enum emailActionsEnum {
+export enum EmailActionsEnum {
     // eslint-disable-next-line no-unused-vars
     WELCOME,
     // eslint-disable-next-line no-unused-vars

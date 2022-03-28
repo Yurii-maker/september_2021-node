@@ -1,11 +1,11 @@
 import nodemailer from 'nodemailer';
 
-import { emailActionsEnum } from '../constants/enum';
+import { EmailActionsEnum } from '../constants/enum';
 import { emailInfo } from '../constants/emailInfo';
 import { config } from '../configs/config';
 
 class EmailService {
-    sendMail(userMail:string, action:emailActionsEnum) {
+    sendMail(userMail:string, action:EmailActionsEnum) {
         const { subject, html } = emailInfo[action];
         const emailTransporter = nodemailer.createTransport({
             from: 'PLATFORM',
