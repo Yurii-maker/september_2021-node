@@ -9,4 +9,6 @@ export const config = {
     SALT: process.env.SALT,
     ACCESS_TOKEN_LIFE: process.env.ACCESS_TOKEN_LIFE,
     REFRESH_TOKEN_LIFE: process.env.REFRESH_TOKEN_LIFE,
+    ROOT_EMAIL: process.env.ROOT_EMAIL,
+    ROOT_EMAIL_PASSWORD: process.env.ROOT_EMAIL_PASSWORD,
 };

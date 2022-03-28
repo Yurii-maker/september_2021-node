@@ -2,22 +2,21 @@ import { Response, NextFunction } from 'express';
 
 import { ICustomRequest } from '../interfaces/customRequest';
 import { userService } from '../services/userService';
+import { ErrorHandler } from '../errors/errorHandler';
 
 class UserMiddleware {
-    async checkUserExist(req: ICustomRequest, res: Response, next: NextFunction) {
+    public async checkUserExist(req: ICustomRequest, res: Response, next: NextFunction) {
         try {
             const { email } = req.body;
             const userFromDB = await userService.getUserByEmail(email);
             if (!userFromDB) {
-                res.status(404)
-                    .json('user not found');
+                next(new ErrorHandler('user not found', 404));
                 return;
             }
             req.user = userFromDB;
             next();
         } catch (e) {
-            res.status(400)
-                .json(e);
+            next(e);
         }
     }
 }
