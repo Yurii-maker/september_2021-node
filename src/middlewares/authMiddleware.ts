@@ -60,7 +60,8 @@ class AuthMiddleware {
         }
     }
 
-    public async registrationDataValidate(req: ICustomRequest, res: Response, next: NextFunction) {
+    public async registrationDataValidate(req: ICustomRequest, res: Response, next: NextFunction)
+        :Promise<void> {
         try {
             const { error, value } = userValidators.userRegistration.validate(req.body);
 
@@ -75,7 +76,8 @@ class AuthMiddleware {
         }
     }
 
-    public async loginDataValidate(req: ICustomRequest, res: Response, next: NextFunction) {
+    public async loginDataValidate(req: ICustomRequest, res: Response, next: NextFunction)
+        :Promise<void> {
         try {
             const { error, value } = userValidators.userLogin.validate(req.body);
 

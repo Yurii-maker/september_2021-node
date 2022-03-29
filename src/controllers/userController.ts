@@ -4,12 +4,6 @@ import { IUser } from '../entity/user';
 import { userService } from '../services/userService';
 
 class UserController {
-    public async createUser(req:Request, res:Response):Promise<Response<IUser>> {
-        const createdUser = await userService.createUser(req.body);
-
-        return res.json(createdUser);
-    }
-
     public async getAllUsers(req: Request, res: Response):Promise<Response<IUser[]>> {
         const users = await userService.getAllUsers();
         return res.json(users);

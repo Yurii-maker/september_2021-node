@@ -32,6 +32,19 @@ export const userValidators = {
             .required(),
     }),
 
+    userToUpdate: Joi.object({
+        email: Joi
+            .string()
+            .regex(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/)
+            .trim()
+            .lowercase()
+            .required(),
+        password: Joi
+            .string()
+            .regex(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/)
+            .required(),
+    }),
+
     userLogin: Joi.object({
         email: Joi
             .string()
@@ -42,6 +55,22 @@ export const userValidators = {
         password: Joi
             .string()
             .regex(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/)
+            .required(),
+    }),
+
+    userEmail: Joi.object({
+        email: Joi
+            .string()
+            .regex(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/)
+            .trim()
+            .lowercase()
+            .required(),
+    }),
+
+    userId: Joi.object({
+        id: Joi
+            .number()
+            .min(1)
             .required(),
     }),
 };
