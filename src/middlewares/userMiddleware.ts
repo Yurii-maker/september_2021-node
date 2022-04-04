@@ -51,9 +51,39 @@ class UserMiddleware {
         }
     }
 
+    public async emailBodyValidate(req: ICustomRequest, res: Response, next: NextFunction) {
+        try {
+            const { error, value } = userValidators.userEmail.validate(req.body);
+
+            if (error) {
+                next(new ErrorHandler(error.details[0].message, 404));
+                return;
+            }
+            req.body = value;
+            next();
+        } catch (e) {
+            next(e);
+        }
+    }
+
     public async userToUpdateValidate(req: ICustomRequest, res: Response, next: NextFunction) {
         try {
             const { error, value } = userValidators.userToUpdate.validate(req.body);
+
+            if (error) {
+                next(new ErrorHandler(error.details[0].message, 404));
+                return;
+            }
+            req.body = value;
+            next();
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    public async passwordValidate(req: ICustomRequest, res: Response, next: NextFunction) {
+        try {
+            const { error, value } = userValidators.userPassword.validate(req.body);
 
             if (error) {
                 next(new ErrorHandler(error.details[0].message, 404));

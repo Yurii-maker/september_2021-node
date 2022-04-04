@@ -7,6 +7,15 @@ import { tokenRepository } from '../repositories/token/tokenRepository';
 import { ITokens } from '../entity/token';
 
 class TokenService {
+    public async generateActionToken(payload:IUserPayload): Promise<string> {
+        const actionToken = jwt.sign(
+            payload,
+            config.SECRET_FORGOT_KEY,
+            { expiresIn: config.FORGOT_TOKEN_LIFE },
+        );
+        return actionToken;
+    }
+
     public async generateTokensPair(payload:IUserPayload):Promise<ITokenPair> {
         const accessToken = jwt.sign(
             payload,
@@ -42,6 +51,9 @@ class TokenService {
         let secretWord = config.SECRET_ACCESS_KEY;
         if (type === 'refresh') {
             secretWord = config.SECRET_REFRESH_KEY;
+        }
+        if (type === 'action') {
+            secretWord = config.SECRET_FORGOT_KEY;
         }
         return jwt.verify(authToken, secretWord as string) as IUserPayload;
     }

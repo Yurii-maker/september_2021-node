@@ -28,6 +28,7 @@
       }
     ],
     "class-methods-use-this": "off",
+    "consistent-return": "off",
     "no-underscore-dangle":"off",
     "no-unused-vars": [
       "error",
@@ -35,6 +36,7 @@
         "args": "none"
       }
     ],
+    "no-param-reassign": "warn",
   "no-shadow": "off",
   "@typescript-eslint/no-shadow": ["error"]
   },

@@ -3,14 +3,18 @@ import { EmailActionsEnum } from './enum';
 export const emailInfo = {
     [EmailActionsEnum.WELCOME]: {
         subject: 'Registration',
-        html: 'Welcome, registration is successful',
+        templateName: 'welcome',
     },
     [EmailActionsEnum.ACCOUNT_BLOCKED]: {
         subject: 'Your account is blocked',
-        html: 'Oop something going wrong...',
+        templateName: 'accountBlocked',
     },
     [EmailActionsEnum.YOU_ARE_LOGINED]: {
-        subject: 'Welcome',
-        html: 'Welcome, to our platform ',
+        subject: 'You are logined',
+        templateName: 'welcome',
+    },
+    [EmailActionsEnum.NEW_PASSWORD]: {
+        subject: 'Dont worry',
+        templateName: 'forgotPassword',
     },
 };

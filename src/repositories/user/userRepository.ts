@@ -40,5 +40,14 @@ class UserRepository extends Repository<User> implements IUserRepository {
                 { email: userEmail },
         });
     }
+
+    public async updateUserByParams(id:number, params:Partial<IUser>):Promise<UpdateResult> {
+        return getManager()
+            .getRepository(User)
+            .update(
+                { id },
+                params,
+            );
+    }
 }
 export const userRepository = new UserRepository();

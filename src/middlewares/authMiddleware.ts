@@ -6,6 +6,7 @@ import { ICustomRequest } from '../interfaces/customRequest';
 import { tokenRepository } from '../repositories/token/tokenRepository';
 import { userValidators } from '../validators/userValidator';
 import { ErrorHandler } from '../errors/errorHandler';
+import { actionTokenRepository } from '../repositories/actionToken/actionTokenRepository';
 
 class AuthMiddleware {
     public async checkAccessToken(req:ICustomRequest, res:Response, next:NextFunction) {
@@ -86,6 +87,33 @@ class AuthMiddleware {
                 return;
             }
             req.body = value;
+            next();
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    public async checkActionToken(req:ICustomRequest, res:Response, next:NextFunction) {
+        try {
+            const actionToken = req.get('Authorization');
+            if (!actionToken) {
+                next(new ErrorHandler('no token', 404));
+                return;
+            }
+            const { userEmail } = await tokenService.verifyToken(actionToken, 'action');
+            const userFromToken = await userService.getUserByEmail(userEmail);
+
+            const actionTokenFromDB = await actionTokenRepository
+                .findActionTokenByParams({ actionToken });
+            if (!actionTokenFromDB) {
+                next(new ErrorHandler('invalid token', 404));
+                return;
+            }
+            if (!userFromToken) {
+                next(new ErrorHandler('wrong token', 404));
+                return;
+            }
+            req.user = userFromToken;
             next();
         } catch (e) {
             next(e);

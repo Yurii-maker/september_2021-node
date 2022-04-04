@@ -24,6 +24,15 @@ class UserService {
         return updatedUser;
     }
 
+    public async updateUserByParams(id:number, user:Partial<IUser>):
+        Promise<UpdateResult | undefined> {
+        if (user.password) {
+            user.password = await this._hashPassword(user.password);
+        }
+
+        return userRepository.updateUserByParams(id, user);
+    }
+
     public async deleteUser(id:number):Promise<UpdateResult> {
         const deletedUser = await userRepository.deleteUser(id);
         return deletedUser;
