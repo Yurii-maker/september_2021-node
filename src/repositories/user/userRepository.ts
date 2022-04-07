@@ -4,6 +4,7 @@ import {
 
 import { IUser, User } from '../../entity/user';
 import { IUserRepository } from './userRepositoryInterface';
+import { IPaginationResponse } from '../../interfaces/paginationResponse';
 
 @EntityRepository(User)
 class UserRepository extends Repository<User> implements IUserRepository {
@@ -48,6 +49,28 @@ class UserRepository extends Repository<User> implements IUserRepository {
                 { id },
                 params,
             );
+    }
+
+    public async getUserPagination(
+        page: number = 1,
+        perPage:number = 5,
+        searchObject: Partial<IUser> = {},
+    ):
+        Promise<IPaginationResponse<IUser>> {
+        const skip = perPage * (page - 1);
+        const take = perPage;
+        const [users, count] = await getManager()
+            .getRepository(User)
+            .findAndCount(
+                { where: searchObject, skip, take },
+            );
+
+        return {
+            page,
+            perPage,
+            itemCount: count,
+            data: users,
+        };
     }
 }
 export const userRepository = new UserRepository();

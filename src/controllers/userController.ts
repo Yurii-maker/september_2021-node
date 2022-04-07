@@ -1,12 +1,23 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import { IUser } from '../entity/user';
 import { userService } from '../services/userService';
 
 class UserController {
-    public async getAllUsers(req: Request, res: Response):Promise<Response<IUser[]>> {
+    public async getAllUsers(req: Request, res: Response): Promise<Response<IUser[]>> {
         const users = await userService.getAllUsers();
         return res.json(users);
+    }
+
+    public async getUserPagination(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { page, perPage, ...other } = req.query;
+            const userPagination = await userService
+                .getUserPagination(Number(page), Number(perPage), other);
+            res.json(userPagination);
+        } catch (e) {
+            next(e);
+        }
     }
 
     public async updateUser(req: Request, res: Response) {
