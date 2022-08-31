@@ -1,7 +1,7 @@
 import {
     DeleteResult, EntityRepository, getManager, Repository,
 } from 'typeorm';
-import { ActionToken, IActionToken } from '../../entity/actionToken';
+import { ActionToken, IActionToken } from '../../entity';
 import { IActionTokenRepository } from './actionTokenRepositoryInterface';
 
 @EntityRepository(ActionToken)

@@ -1,7 +1,7 @@
 import { DeleteResult } from 'typeorm';
 
-import { ITokens } from '../../entity/token';
-import { ITokenPair } from '../../interfaces/tokenInterface';
+import { ITokens } from '../../entity';
+import { ITokenPair } from '../../interfaces';
 
 export interface ITokenRepository{
     createToken(token:ITokens):Promise<ITokens>,

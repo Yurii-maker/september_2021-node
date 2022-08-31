@@ -1,7 +1,7 @@
 import { UpdateResult } from 'typeorm';
 
-import { IUser } from '../../entity/user';
-import { IPaginationResponse } from '../../interfaces/paginationResponse';
+import { IUser } from '../../entity';
+import { IPaginationResponse } from '../../interfaces';
 
 export interface IUserRepository{
     createUser(user:IUser):Promise<IUser>,

@@ -1,9 +1,9 @@
 import { UpdateResult } from 'typeorm';
 import bcrypt from 'bcrypt';
 
-import { IUser } from '../entity/user';
-import { userRepository } from '../repositories/user/userRepository';
-import { IPaginationResponse } from '../interfaces/paginationResponse';
+import { IUser } from '../entity';
+import { userRepository } from '../repositories';
+import { IPaginationResponse } from '../interfaces';
 
 class UserService {
     public async createUser(user:IUser):Promise<IUser> {

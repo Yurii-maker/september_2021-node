@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 
-import { IUser } from '../entity/user';
+import { IUser } from '../entity';
 import { userService } from './userService';
 import { tokenService } from './tokenService';
-import { ITokenData } from '../interfaces/tokenInterface';
+import { ITokenData } from '../interfaces';
 
 class AuthService {
     public async registration(user: IUser):Promise<ITokenData> {

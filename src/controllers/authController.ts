@@ -1,14 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { authService } from '../services/authService';
-import { ITokenData } from '../interfaces/tokenInterface';
-import { ICustomRequest } from '../interfaces/customRequest';
-import { tokenService } from '../services/tokenService';
-import { IUser } from '../entity/user';
-import { emailService } from '../services/emailService';
-import { EmailActionsEnum } from '../constants/enum';
-import { actionTokenRepository } from '../repositories/actionToken/actionTokenRepository';
-import { userService } from '../services/userService';
+import {
+    authService, tokenService, emailService, userService,
+} from '../services';
+import { ITokenData, ICustomRequest } from '../interfaces';
+import { IUser } from '../entity';
+import { EmailActionsEnum } from '../constants';
+import { actionTokenRepository } from '../repositories';
 
 class AuthController {
     public async registration(

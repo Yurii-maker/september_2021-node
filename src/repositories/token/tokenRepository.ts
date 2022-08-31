@@ -2,9 +2,9 @@ import {
     DeleteResult, EntityRepository, getManager, Repository,
 } from 'typeorm';
 
-import { ITokens, Token } from '../../entity/token';
+import { ITokens, Token } from '../../entity';
 import { ITokenRepository } from './tokenRepositoryInterface';
-import { ITokenPair } from '../../interfaces/tokenInterface';
+import { ITokenPair } from '../../interfaces';
 
 @EntityRepository(Token)
 class TokenRepository extends Repository<Token> implements ITokenRepository {

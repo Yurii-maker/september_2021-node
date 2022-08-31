@@ -2,9 +2,9 @@ import {
     EntityRepository, getManager, Repository, UpdateResult,
 } from 'typeorm';
 
-import { IUser, User } from '../../entity/user';
+import { IUser, User } from '../../entity';
 import { IUserRepository } from './userRepositoryInterface';
-import { IPaginationResponse } from '../../interfaces/paginationResponse';
+import { IPaginationResponse } from '../../interfaces';
 
 @EntityRepository(User)
 class UserRepository extends Repository<User> implements IUserRepository {

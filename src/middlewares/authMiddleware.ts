@@ -1,12 +1,10 @@
 import { NextFunction, Response } from 'express';
 
-import { tokenService } from '../services/tokenService';
-import { userService } from '../services/userService';
-import { ICustomRequest } from '../interfaces/customRequest';
-import { tokenRepository } from '../repositories/token/tokenRepository';
-import { userValidators } from '../validators/userValidator';
-import { ErrorHandler } from '../errors/errorHandler';
-import { actionTokenRepository } from '../repositories/actionToken/actionTokenRepository';
+import { tokenService, userService } from '../services';
+import { ICustomRequest } from '../interfaces';
+import { tokenRepository, actionTokenRepository } from '../repositories';
+import { userValidators } from '../validators';
+import { ErrorHandler } from '../errors';
 
 class AuthMiddleware {
     public async checkAccessToken(req:ICustomRequest, res:Response, next:NextFunction) {

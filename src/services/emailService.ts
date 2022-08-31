@@ -2,9 +2,8 @@ import nodemailer, { SentMessageInfo } from 'nodemailer';
 import EmailTemplate from 'email-templates';
 import path from 'path';
 
-import { EmailActionsEnum } from '../constants/enum';
-import { emailInfo } from '../constants/emailInfo';
-import { config } from '../configs/config';
+import { EmailActionsEnum, emailInfo } from '../constants';
+import { config } from '../configs';
 
 class EmailService {
     templateRenderer = new EmailTemplate({

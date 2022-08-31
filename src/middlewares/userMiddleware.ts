@@ -1,9 +1,9 @@
 import { Response, NextFunction } from 'express';
 
-import { ICustomRequest } from '../interfaces/customRequest';
-import { userService } from '../services/userService';
-import { ErrorHandler } from '../errors/errorHandler';
-import { userValidators } from '../validators/userValidator';
+import { ICustomRequest } from '../interfaces';
+import { userService } from '../services';
+import { ErrorHandler } from '../errors';
+import { userValidators } from '../validators';
 
 class UserMiddleware {
     public async checkUserExist(req: ICustomRequest, res: Response, next: NextFunction) {

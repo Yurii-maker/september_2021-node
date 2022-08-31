@@ -1,5 +1,5 @@
 import { DeleteResult } from 'typeorm';
-import { IActionToken } from '../../entity/actionToken';
+import { IActionToken } from '../../entity';
 
 export interface IActionTokenRepository {
     createActionToken (token:IActionToken):Promise<IActionToken>,
